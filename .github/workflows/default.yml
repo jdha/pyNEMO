@@ -16,7 +16,7 @@ jobs:
     - uses: ammaraskar/sphinx-action@master
       with:
         docs-folder: "docs/"
-        pre-build-command: "sudo pip install -r requirements.txt"
+        pre-build-command: "sudo pip install sphinx-rtd-theme"
     # Publish built docs to gh-pages branch.
     # ===============================
     - name: Commit documentation changes
