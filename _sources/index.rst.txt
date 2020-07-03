@@ -1,4 +1,4 @@
-PyNEMO User Guide
+PyNEMO User Guide (v0.1)
 =================
 
 Contents:
