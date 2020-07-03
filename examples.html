@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Examples &mdash; pyNEMO 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Troubleshooting" href="troubleshooting.html" />
+    <link rel="prev" title="pyNEMO NcML Generator Usage" href="ncml_generator_usage.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyNEMO
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ncml_generator_usage.html">pyNEMO NcML Generator Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#example-1-northwest-european-shelf">Example 1: Northwest European Shelf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#example-2-lighthouse-reef">Example 2: Lighthouse Reef</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyNEMO</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Examples</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/examples.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<p>Here we provide two worked examples using pyNEMO. The first is a setup of the Northwest European Shelf using
+a remote dataset. The second is an end-to-end setup of a small regional model in the tropics.</p>
+</div>
+<div class="section" id="example-1-northwest-european-shelf">
+<h1>Example 1: Northwest European Shelf<a class="headerlink" href="#example-1-northwest-european-shelf" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-center" id="id1">
+<img alt="_static/eg1.png" src="_static/eg1.png" />
+<p class="caption"><span class="caption-text">Northwest European Shelf Bathymetry</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>This example has been tested on the ARCHER HPC facillity <em>(22 Feb 2017)</em>.</p>
+<p>First, create a working directory into which the code can
+run. All the data required for this example are held on a
+THREDDS server so no addtional data are required.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>make sure cray-netcdf-hdf5parallel cray-hdf5-parallel are loaded.
+This example has been consructed under PrgEnv-intel. e.g.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">swap</span> <span class="n">PrgEnv</span><span class="o">-</span><span class="n">cray</span> <span class="n">PrgEnv</span><span class="o">-</span><span class="n">intel</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">cray</span><span class="o">-</span><span class="n">netcdf</span><span class="o">-</span><span class="n">hdf5parallel</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">cray</span><span class="o">-</span><span class="n">hdf5</span><span class="o">-</span><span class="n">parallel</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Be careful to avoid symbolic links in NEMO control files.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd $WDIR
+mkdir OUTPUT
+</pre></div>
+</div>
+<p>Now we’re ready to generate the boundary conditions using pyNEMO.
+If this is not installed follow the <cite>installation guide</cite> or a quick
+setup could be as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd ~
+module load anaconda
+conda create --name pynemo_env scipy=0.16.0 numpy matplotlib=1.5.1 basemap netcdf4 libgfortran=1.0.0
+source activate pynemo_env
+conda install -c conda-forge seawater=3.3.4
+conda install -c https://conda.anaconda.org/srikanthnagella thredds_crawler
+conda install -c https://conda.anaconda.org/srikanthnagella pyjnius
+export LD_LIBRARY_PATH=/opt/java/jdk1.7.0_45/jre/lib/amd64/server:$LD_LIBRARY_PATH
+svn checkout https://ccpforge.cse.rl.ac.uk/svn/pynemo
+cd pynemo/trunk/Python
+python setup.py build
+export PYTHONPATH=~/.conda/envs/pynemo/lib/python2.7/site-packages/:$PYTHONPATH
+python setup.py install --prefix ~/.conda/envs/pynemo
+cp data/namelist.bdy $WDIR
+cd $WDIR
+</pre></div>
+</div>
+<p>Next we need to modify the namelist.bdy file to point it to the correct
+data sources. First we need to create an ncml file to gather input data
+and map variable names. First we update <em>sn_src_dir</em>, <em>sn_dst_dir</em> and
+<em>cn_mask_file</em> to reflect the working path (e.g. sn_src_dir = ‘$WDIR/test.ncml’,
+sn_dst_dir = ‘$WDIR/OUTPUT’ and cn_mask_file = ‘$WDIR/mask.nc’).
+Explicitly write out $WDIR. Next we need to generate test.ncml.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>pynemo may have to be run on either espp1 or espp2 (e.g. ssh -Y espp1)
+as the JVM doesn’t have sufficient memory on the login nodes.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ssh -Y espp1
+module load anaconda
+source activate pynemo_env
+cd $WDIR
+pynemo_ncml_generator
+</pre></div>
+</div>
+<p>For each of the tracer and dynamics variables enter the following URL as
+the source directory:</p>
+<p><a class="reference external" href="http://esurgeod.noc.soton.ac.uk:8080/thredds/dodsC/PyNEMO/data">http://esurgeod.noc.soton.ac.uk:8080/thredds/dodsC/PyNEMO/data</a></p>
+<p>Add a regular expression for each (Temperature, Salinity and Sea Surface
+Height each use: .*T.nc$ and the velocities use .*V.nc$ and .*V.nc$)
+After each entry click the Add button. Finally fill in the output file
+including directory path (this should match <em>sn_src_dir</em>). Once this is complete
+click on the generate button and an ncml file should be written to $WDIR.</p>
+<p>Then using pynemo we define the area we want to model and generate some
+boundary conditions:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I’ve had to add the conda env path to the $PYTHONPATH as python does
+seem to be able to pick up pyjnius!?</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export LD_LIBRARY_PATH=/opt/java/jdk1.7.0_45/jre/lib/amd64/server:$LD_LIBRARY_PATH
+export PYTHONPATH=~/.conda/envs/pynemo_env/lib/python2.7/site-packages:$PYTHONPATH
+pynemo -g -s namelist.bdy
+</pre></div>
+</div>
+<p>Once the area of interest is selected and the close button is clicked,
+open boundary data should be generated in $WDIR/OUTPUT.</p>
+</div>
+<div class="section" id="example-2-lighthouse-reef">
+<h1>Example 2: Lighthouse Reef<a class="headerlink" href="#example-2-lighthouse-reef" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-center" id="id2">
+<img alt="_images/eg2.png" src="_images/eg2.png" />
+<p class="caption"><span class="caption-text">Regional Mask / SSH after 1 day / SST after 1 day</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>This example has been tested on the ARCHER HPC facillity.</p>
+<p>First, create a working directory into which the NEMO
+source code can be checked out. Create an inputs directory
+to unpack the forcing tar ball.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>make sure cray-netcdf-hdf5parallel cray-hdf5-parallel are loaded.
+This example has been consructed under PrgEnv-intel.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd $WDIR
+mkdir INPUTS
+cd INPUTS
+wget ftp.nerc-liv.ac.uk:/pub/general/jdha/inputs.tar.gz
+tar xvfz inputs.tar.gz
+rm inputs.tar.gz
+cd ../
+svn co http://forge.ipsl.jussieu.fr/nemo/svn/branches/2014/dev_r4621_NOC4_BDY_VERT_INTERP@5709
+svn co http://forge.ipsl.jussieu.fr/ioserver/svn/XIOS/branchs/xios-1.0@629
+cd xios-1.0
+cp $WDIR/INPUTS/arch-XC30_ARCHER.* ./arch
+./make_xios --full --prod --arch XC30_ARCHER --netcdf_lib netcdf4_par
+</pre></div>
+</div>
+<p>Next we setup our experiment directory and drop an updated
+dtatsd.F90 into MY_SRC to allow the vertical interpolation
+of initial conditions on to the new verictal coordinates.
+We also apply several patches for bugs in the code.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>when executing ./makenemo for the first time only choose OPA_SRC.
+For some reason even though LIM_2 is not chosen key_lim2 is
+in the cpp keys. This means the first call to ./makenemo will fail.
+Just vi LH_REEF/cpp_LH_REEF.fcm and remove key_lim2 and re-issue
+the make command.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export CDIR=$WDIR/dev_r4621_NOC4_BDY_VERT_INTERP/NEMOGCM/CONFIG
+export TDIR=$WDIR/dev_r4621_NOC4_BDY_VERT_INTERP/NEMOGCM/TOOLS
+cd $CDIR/../NEMO/OPA_SRC/SBC
+patch -b &lt; $WDIR/INPUTS/fldread.patch
+cd ../DOM
+patch -b &lt; $WDIR/INPUTS/dommsk.patch
+cd ../BDY
+patch -b &lt; $WDIR/INPUTS/bdyini.patch
+cd $CDIR
+rm $CDIR/../NEMO/OPA_SRC/TRD/trdmod.F90
+cp $WDIR/INPUTS/arch-* ../ARCH
+./makenemo -n LH_REEF -m XC_ARCHER_INTEL -j 10
+cp $WDIR/INPUTS/cpp_LH_REEF.fcm ./LH_REEF
+cp $WDIR/INPUTS/dtatsd.F90 LH_REEF/MY_SRC/
+</pre></div>
+</div>
+<p>To generate bathymetry, initial conditions and grid information
+we first need to compile some of the NEMO TOOLS (after a small
+bugfix - and to allow direct passing of arguments). For some
+reason GRIDGEN doesn’t like INTEL:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd $WDIR/dev_r4621_NOC4_BDY_VERT_INTERP/NEMOGCM/TOOLS/WEIGHTS/src
+patch -b &lt; $WDIR/INPUTS/scripinterp_mod.patch
+patch -b &lt; $WDIR/INPUTS/scripinterp.patch
+patch -b &lt; $WDIR/INPUTS/scrip.patch
+patch -b &lt; $WDIR/INPUTS/scripshape.patch
+patch -b &lt; $WDIR/INPUTS/scripgrid.patch
+cd ../../
+./maketools -n WEIGHTS -m XC_ARCHER_INTEL
+./maketools -n REBUILD_NEMO -m XC_ARCHER_INTEL
+module unload cray-netcdf-hdf5parallel cray-hdf5-parallel
+module swap PrgEnv-intel PrgEnv-cray
+module load cray-netcdf cray-hdf5
+./maketools -n GRIDGEN -m XC_ARCHER
+module swap PrgEnv-cray PrgEnv-intel
+export TDIR=$WDIR/dev_r4621_NOC4_BDY_VERT_INTERP/NEMOGCM/TOOLS
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>my standard ARCHER ENV is intel with parallel netcdf you may need to edit accordingly</p>
+</div>
+<p>Back in $WDIR/INPUTS, create a new coordinates file from the
+existing global 1/12 mesh and refine to 1/84 degree resolution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd $TDIR/GRIDGEN
+cp $WDIR/INPUTS/namelist_R12 ./
+ln -s namelist_R12 namelist.input
+./create_coordinates.exe
+cp 1_coordinates_ORCA_R12.nc $WDIR/INPUTS/coordinates.nc
+</pre></div>
+</div>
+<p>To create the bathymetry we use the gebco dataset. On ARCHER I
+had to use a non-default nco module for netcdf operations to work.
+I also had to cut down the gebco data as the SCRIP routines failed
+for some unknown reason.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd $WDIR/INPUTS
+module load nco/4.5.0
+ncap2 -s &#39;where(topo &gt; 0) topo=0&#39; gebco_1_cutdown.nc tmp.nc
+ncflint --fix_rec_crd -w -1.0,0.0 tmp.nc tmp.nc gebco_in.nc
+rm tmp.nc
+module unload nco cray-netcdf cray-hdf5
+module load cray-netcdf-hdf5parallel cray-hdf5-parallel
+$TDIR/WEIGHTS/scripgrid.exe namelist_reshape_bilin_gebco
+$TDIR/WEIGHTS/scrip.exe namelist_reshape_bilin_gebco
+$TDIR/WEIGHTS/scripinterp.exe namelist_reshape_bilin_gebco
+</pre></div>
+</div>
+<p>We perform a similar operation to create the initial conditions:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I’ve put a sosie pre-step in here to flood fill the land.
+I tried using sosie for 3D intepolation, but not convinced.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd ~
+mkdir local
+svn co svn://svn.code.sf.net/p/sosie/code/trunk sosie
+cd sosie
+cp $WDIR/INPUTS/make.macro ./
+make
+make install
+export PATH=~/local/bin:$PATH
+cd $WDIR/INPUTS
+sosie.x -f initcd_votemper.namelist
+sosie.x -f initcd_vosaline.namelist
+$TDIR/WEIGHTS/scripgrid.exe namelist_reshape_bilin_initcd_votemper
+$TDIR/WEIGHTS/scrip.exe namelist_reshape_bilin_initcd_votemper
+$TDIR/WEIGHTS/scripinterp.exe namelist_reshape_bilin_initcd_votemper
+$TDIR/WEIGHTS/scripinterp.exe namelist_reshape_bilin_initcd_vosaline
+</pre></div>
+</div>
+<p>Finally we setup weights files for the atmospheric forcing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$TDIR/WEIGHTS/scripgrid.exe namelist_reshape_bilin_atmos
+$TDIR/WEIGHTS/scrip.exe namelist_reshape_bilin_atmos
+$TDIR/WEIGHTS/scripshape.exe namelist_reshape_bilin_atmos
+$TDIR/WEIGHTS/scrip.exe namelist_reshape_bicubic_atmos
+$TDIR/WEIGHTS/scripshape.exe namelist_reshape_bicubic_atmos
+</pre></div>
+</div>
+<p>Next step is to create the mesh and mask files that will be used
+in the generation of the open boundary conditions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd $CDIR
+cp $WDIR/INPUTS/cpp_LH_REEF.fcm LH_REEF/
+ln -s $WDIR/INPUTS/bathy_meter.nc $CDIR/LH_REEF/EXP00/bathy_meter.nc
+ln -s $WDIR/INPUTS/coordinates.nc $CDIR/LH_REEF/EXP00/coordinates.nc
+cp $WDIR/INPUTS/runscript $CDIR/LH_REEF/EXP00
+cp $WDIR/INPUTS/namelist_cfg $CDIR/LH_REEF/EXP00/namelist_cfg
+cp $WDIR/INPUTS/namelist_ref $CDIR/LH_REEF/EXP00/namelist_ref
+./makenemo clean
+./makenemo -n LH_REEF -m XC_ARCHER_INTEL -j 10
+cd LH_REEF/EXP00
+ln -s $WDIR/xios-1.0/bin/xios_server.exe xios_server.exe
+qsub -q short runscript
+</pre></div>
+</div>
+<p>If that works, we then need to rebuild the mesh and mask files in
+to single files for the next step:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$TDIR/REBUILD_NEMO/rebuild_nemo -t 24 mesh_zgr 96
+$TDIR/REBUILD_NEMO/rebuild_nemo -t 24 mesh_hgr 96
+$TDIR/REBUILD_NEMO/rebuild_nemo -t 24 mask 96
+mv mesh_zgr.nc mesh_hgr.nc mask.nc $WDIR/INPUTS
+rm mesh_* mask_* LH_REEF_0000*
+cd $WDIR/INPUTS
+</pre></div>
+</div>
+<p>Now we’re ready to generate the boundary conditions using pyNEMO.
+If this is not installed follow the <cite>installation guide</cite> or a quick
+setup could be as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd ~
+module load anaconda
+conda create --name pynemo_env scipy=0.16.0 numpy matplotlib=1.5.1 basemap netcdf4 libgfortran=1.0.0
+source activate pynemo_env
+conda install -c conda-forge seawater=3.3.4
+conda install -c https://conda.anaconda.org/srikanthnagella thredds_crawler
+conda install -c https://conda.anaconda.org/srikanthnagella pyjnius
+export LD_LIBRARY_PATH=/opt/java/jdk1.7.0_45/jre/lib/amd64/server:$LD_LIBRARY_PATH
+svn checkout https://ccpforge.cse.rl.ac.uk/svn/pynemo
+cd pynemo/trunk/Python
+python setup.py build
+export PYTHONPATH=~/.conda/envs/pynemo/lib/python2.7/site-packages/:$PYTHONPATH
+python setup.py install --prefix ~/.conda/envs/pynemo
+cd $WDIR/INPUTS
+</pre></div>
+</div>
+<p>Start up pynemo and generate boundary conditions. First we need to
+create a few ncml files to gather input data and map variable names.
+Then using pynemo we define the area we want to model:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>pynemo may have to be run on either espp1 or espp2 (e.g. ssh -Y espp1)
+as the JVM doesn’t have sufficient memory on the login nodes.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ssh -Y espp1
+module load anaconda
+source activate pynemo_env
+cd $WDIR/INPUTS
+pynemo_ncml_generator
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The ncml files already exist in the INPUTS directory. There is no need
+generate them. It’s a little tricky at the momment as the ncml generator
+doesn’t have all the functionality required for this example. Next step
+is to fire up pynemo. You can change the mask or accept the default by just
+hitting the close button (that really should say ‘build’ or ‘go’ or such like).
+Also I’ve had to add the conda env path to the $PYTHONPATH as python does
+seem to be able to pick up pyjnius!?</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export LD_LIBRARY_PATH=/opt/java/jdk1.7.0_45/jre/lib/amd64/server:$LD_LIBRARY_PATH
+export PYTHONPATH=~/.conda/envs/pynemo_env/lib/python2.7/site-packages:$PYTHONPATH
+pynemo -g -s namelist.bdy
+</pre></div>
+</div>
+<p>Let’s have a go at running the model after exiting espp1 (after a few variable
+renamings, due to inconsistencies to be ironed out):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>exit
+cd $WDIR/INPUTS
+module unload cray-netcdf-hdf5parallel cray-hdf5-parallel
+module load nco/4.5.0
+ncrename -v deptht,gdept LH_REEF_bdyT_y1980m01.nc
+ncrename -v depthu,gdepu LH_REEF_bdyU_y1980m01.nc
+ncrename -v depthv,gdepv LH_REEF_bdyV_y1980m01.nc
+module unload nco
+module load cray-netcdf-hdf5parallel cray-hdf5-parallel
+cd $CDIR/LH_REEF/EXP00
+ln -s $WDIR/INPUTS/coordinates.bdy.nc $CDIR/LH_REEF/EXP00/coordinates.bdy.nc
+sed -e &#39;s/nn_msh      =    3/nn_msh      =    0/&#39; namelist_cfg &gt; tmp
+sed -e &#39;s/nn_itend    =      1/nn_itend    =       1440 /&#39; tmp &gt; namelist_cfg
+cp $WDIR/INPUTS/*.xml ./
+qsub -q short runscript
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="troubleshooting.html" class="btn btn-neutral float-right" title="Troubleshooting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ncml_generator_usage.html" class="btn btn-neutral" title="pyNEMO NcML Generator Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Harle, Srikanth Nagella, Shirley Crompton.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

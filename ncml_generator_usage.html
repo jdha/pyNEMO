@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyNEMO NcML Generator Usage &mdash; pyNEMO 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="Usage" href="usage.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyNEMO
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pyNEMO NcML Generator Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#generator-gui">Generator GUI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#define-a-target-output-file">Define a Target Output File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#define-the-individual-data-variable">Define the Individual Data Variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-the-ncml-file">Generate the NcML file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#regular-expression-regex">Regular Expression (Regex)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#example-1-northwest-european-shelf">Example 1: Northwest European Shelf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html#example-2-lighthouse-reef">Example 2: Lighthouse Reef</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyNEMO</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>pyNEMO NcML Generator Usage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ncml_generator_usage.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pynemo-ncml-generator-usage">
+<h1>pyNEMO NcML Generator Usage<a class="headerlink" href="#pynemo-ncml-generator-usage" title="Permalink to this headline">¶</a></h1>
+<p>This GUI tool facilitates the creation of a virtual dataset for input into pyNEMO.  The virtual dataset is defined using NetCDF Markup Language (<a class="reference external" href="http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/ncml/Tutorial.html">NcML</a> ).</p>
+<p>Using NcML, it is possible to:</p>
+<ol class="arabic simple">
+<li><p>modify metadata</p></li>
+<li><p>modify and restructure variables</p></li>
+<li><p>combine or aggregate data from multiple datasets.  The datasets may reside in the local file system or in a remote OPeNDAP (<a class="reference external" href="http://www.opendap.org/">http://www.opendap.org/</a>) server.</p></li>
+</ol>
+<div class="section" id="generator-gui">
+<h2>Generator GUI<a class="headerlink" href="#generator-gui" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id1">
+<span id="ncml-gui"></span><img alt="_images/generator-gui.jpg" src="_images/generator-gui.jpg" />
+<p class="caption"><span class="caption-text">Overview of the NcML Generator GUI.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>Users need to follow three distinct steps when using the GUI to generate the virtual dataset:</p>
+<ol class="arabic simple">
+<li><p>Define a target output NcML file</p></li>
+<li><p>Define the individal variable</p></li>
+<li><p>Generate the NcML file</p></li>
+</ol>
+<div class="section" id="define-a-target-output-file">
+<h3>Define a Target Output File<a class="headerlink" href="#define-a-target-output-file" title="Permalink to this headline">¶</a></h3>
+<p>User should provide the path and name of the target NcML file.  The convention is to use <em>.ncml</em> as the file suffix.  The target file can be specified manually using the input text box or visually using the <em>Select file</em> button.  Clicking the button will bring up a file dialogue.</p>
+</div>
+<div class="section" id="define-the-individual-data-variable">
+<h3>Define the Individual Data Variable<a class="headerlink" href="#define-the-individual-data-variable" title="Permalink to this headline">¶</a></h3>
+<p>The nemo data variables are grouped into the following types :</p>
+<ol class="arabic simple">
+<li><p>Tracer (temperature, salinity)</p></li>
+<li><p>Dynamics (zonal velocity, meridian velocity, sea surface height)</p></li>
+<li><p>Ice (ice thickness, leads fraction, snow thickness)</p></li>
+<li><p>Ecosystem (reserved for future use)</p></li>
+<li><p>Grid (reserved for future use)</p></li>
+</ol>
+<p>Users can access the required variable by selecting the tab widget and the variable from the <em>Variable</em> dropdown list.</p>
+<div class="figure align-center" id="id2">
+<span id="ncml-gui-completed"></span><img alt="_images/add-variable.jpg" src="_images/add-variable.jpg" />
+<p class="caption"><span class="caption-text">Example definition of the <em>Ice thickness variable</em>.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>For each variable, users must provide information for:</p>
+<ul class="simple">
+<li><p>Source directory - the location of the folder containing the input datasets.  User can provide an absolute path to a local file folder or an OPeNDAP endpoint, e.g. <a class="reference external" href="http://esurgeod.noc.soton.ac.uk:8080/thredds/dodsC/PyNEMO/data/">http://esurgeod.noc.soton.ac.uk:8080/thredds/dodsC/PyNEMO/data/</a></p></li>
+<li><p>Existing variable name - name used in the source datasets</p></li>
+</ul>
+<p>Users may further filter the source datasets using:</p>
+<ul class="simple">
+<li><p>Include subdirs - check the box to include contents in the sub directories under the specified <em>Source directory</em></p></li>
+<li><p>Regular expression - provides a search pattern for filtering the files. See the <strong>Regex</strong> section below for more information.</p></li>
+</ul>
+<p>After completing the variable form, users should click the <em>Add</em> button to store the input value.  Alternatively, users can use the <em>Reset</em> button to reset the input to the previously saved values. If there are no existing values, the variable tab will be reset to the default state.</p>
+</div>
+<div class="section" id="generate-the-ncml-file">
+<h3>Generate the NcML file<a class="headerlink" href="#generate-the-ncml-file" title="Permalink to this headline">¶</a></h3>
+<p>After adding all the variables, users can generate the NcML file by clicking the <em>Generate</em> button.  If the operation is successful, a pop-up confirmation dialogue will appear.  The generated NcML file can then be used in the bdy file to set up the NEMO simulation.</p>
+</div>
+</div>
+<div class="section" id="regular-expression-regex">
+<h2>Regular Expression (Regex)<a class="headerlink" href="#regular-expression-regex" title="Permalink to this headline">¶</a></h2>
+<p>Regular expression is a special text string for describing a search pattern to match against some text.  You may compare using regex to filter what files to include in your datasets against using wildcard (*) to specify a file search pattern in your computer.</p>
+<p>A detailed description of how to define regular expression for filtering datasets in NcML is available at <a class="reference external" href="http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/ncml/AnnotatedSchema4.html#regexp">http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/ncml/AnnotatedSchema4.html#regexp</a>.</p>
+<p>The following table provides some typical examples of regex:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 36%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Regex</p></th>
+<th class="head"><p>Matching File Path</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>.*V.nc$</p></td>
+<td><p>c:/dir/dir/dir/abcV.nc</p></td>
+<td><p>The file path ends in</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>d:/muV.nc</p></td>
+<td><p>V.nc</p></td>
+</tr>
+<tr class="row-even"><td><p>.*.nc$</p></td>
+<td><p>c:/dir/dir/dir/*.nc</p></td>
+<td><p>The file suffix is  nc</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>d:/*.nc</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>.*/2015.*.nc$</p></td>
+<td><p>c:/dir/2015_01_16.nc</p></td>
+<td><p>The file path contains</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>d:/2015*.nc</p></td>
+<td><p>2015 and the file suffix</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>e:/a/b/c/20151106T.nc</p></td>
+<td><p>is   nc</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="usage.html" class="btn btn-neutral" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Harle, Srikanth Nagella, Shirley Crompton.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
