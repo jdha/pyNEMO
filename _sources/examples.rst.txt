@@ -3,6 +3,7 @@ Examples
 Here we provide two worked examples using pyNEMO. The first is a setup of the Northwest European Shelf using
 a remote dataset. The second is an end-to-end setup of a small regional model in the tropics.
 
+
 Example 1: Northwest European Shelf
 ===================================
 
