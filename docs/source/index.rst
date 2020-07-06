@@ -1,7 +1,7 @@
 PyNEMO User Guide (v0.1)
 =================
 
-Contents:
+Contents here:
 
 .. toctree::
    :maxdepth: 3
