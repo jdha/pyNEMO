@@ -40,17 +40,17 @@ install:
   - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION pkg_name --file dev-requirements.txt
   - source activate test-environment
   
-script:
+#script:
   # Run any test suite you may have
-  - py.test -v
+  #- py.test -v
 
-after_success:
-  # Install the command line API for CONDA uploads
-  - conda install anaconda-client
-  - |
-    # Only upload builds from tags
-    if [[ $TRAVIS_PULL_REQUEST == false && $TRAVIS_REPO_SLUG == "org/pkgname"
-          && $TRAVIS_BRANCH == $TRAVIS_TAG  && $TRAVIS_TAG != '' ]]; then
-      export ANACONDA_API_TOKEN=$CONDA_UPLOAD_TOKEN
-      anaconda upload bld-dir/**/PACKAGENAME-*.tar.bz2
-    fi
+#after_success:
+  ## Install the command line API for CONDA uploads
+  #- conda install anaconda-client
+  #- |
+  #  # Only upload builds from tags
+  #  if [[ $TRAVIS_PULL_REQUEST == false && $TRAVIS_REPO_SLUG == "org/pkgname"
+  #        && $TRAVIS_BRANCH == $TRAVIS_TAG  && $TRAVIS_TAG != '' ]]; then
+  #    export ANACONDA_API_TOKEN=$CONDA_UPLOAD_TOKEN
+  #    anaconda upload bld-dir/**/PACKAGENAME-*.tar.bz2
+  #  fi
