@@ -1,5 +1,7 @@
 # PyNEMO
 ![CI](https://github.com/jdha/PyNEMO/workflows/CI/badge.svg)
+[![Documentation Status](https://readthedocs.org/projects/pynemo/badge/?version=latest)](https://pynemo.readthedocs.io/en/latest/?badge=latest)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 To be udated soon. This work springboards from the [PyNEMO](http://pynemo.readthedocs.io/en/latest/index.html) Project.
 
