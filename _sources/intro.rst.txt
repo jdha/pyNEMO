@@ -2,7 +2,7 @@ Introduction
 ============
 
 
-The NRCT is a tool to set up the lateral boundary conditions for a regional `NEMO <http://www.nemo-ocean.eu>`_
+PyNEMO is a tool to set up the lateral boundary conditions for a regional `NEMO <http://www.nemo-ocean.eu>`_
 model configuration.  The tool is written in Python, largely within the
 `Anaconda <https://store.continuum.io/cshop/anaconda/>`_ environment to aid
 wider distribution and to facilitate development.  In their current form these
