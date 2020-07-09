@@ -18,8 +18,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'PyNEMO'
-copyright = '2019, sphinx-action Test Suite'
-author = 'sphinx-action Test Suite'
+copyright = '2020, James Harle'
+author = 'James Harle'
 
 
 # -- General configuration ---------------------------------------------------
